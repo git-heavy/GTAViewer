@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="DFFViewer.Navigator3D"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <RoutedUICommand x:Key="LeftCommand" Text="Left"/>
+    <RoutedUICommand x:Key="RightCommand" Text="Right"/>    
+    <RoutedUICommand x:Key="TopCommand" Text="Top"/>
+    <RoutedUICommand x:Key="BottomCommand" Text="Bottom"/>
+  </UserControl.Resources>
+  <UserControl.CommandBindings>
+    <CommandBinding Command="{StaticResource LeftCommand}" Executed="LeftCommandExecuted"/>
+    <CommandBinding Command="{StaticResource RightCommand}" Executed="RightCommandExecuted"/>    
+    <CommandBinding Command="{StaticResource TopCommand}" Executed="TopCommandExecuted"/>
+    <CommandBinding Command="{StaticResource BottomCommand}" Executed="BottomCommandExecuted"/>
+  </UserControl.CommandBindings>  
+  <UniformGrid>        
+    <Button Grid.Row="0" Grid.Column="0"/>
+    <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource CommandButton}" Command="{StaticResource LeftCommand}"/>
+    <Button Grid.Row="2" Grid.Column="0"/>
+    <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CommandButton}" Command="{StaticResource TopCommand}"/>
+    <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource CommandButton}" Content="Center"/>
+    <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource CommandButton}" Command="{StaticResource BottomCommand}"/>
+    <Button Grid.Row="0" Grid.Column="2"/>
+    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CommandButton}" Command="{StaticResource RightCommand}"/>
+    <Button Grid.Row="2" Grid.Column="2"/>
+  </UniformGrid>
+</UserControl>
