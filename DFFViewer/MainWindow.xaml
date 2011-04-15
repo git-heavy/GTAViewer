@@ -15,16 +15,20 @@
     <DockPanel>
       <StackPanel Orientation="Vertical">
         <my:Navigator3D DockPanel.Dock="Left"/>
-        <Slider Minimum="0" Maximum="359" Orientation="Horizontal" Value="{Binding ElementName=rotate, Path=Angle}"/>
+        <Slider Minimum="0" Maximum="359" Orientation="Horizontal" Value="{Binding ElementName=rotate, Path=Angle}" />
+        <my:ExtendedSlider Orientation="Horizontal" Value="{Binding ElementName=camera, Path=Width, Mode=TwoWay}"/>
       </StackPanel>
       <Viewport3D x:Name="ModelViewPort">
+        <Viewport3D.Camera>
+          <OrthographicCamera x:Name="camera" />
+        </Viewport3D.Camera>
         <ModelVisual3D x:Name="MainModel">
           <ModelVisual3D.Transform>
             <RotateTransform3D>
               <RotateTransform3D.Rotation>
-                <AxisAngleRotation3D x:Name="rotate" Axis="0 1 0"/>
+                <AxisAngleRotation3D x:Name="rotateY" Axis="0 1 0"/>                                
               </RotateTransform3D.Rotation>
-            </RotateTransform3D>
+            </RotateTransform3D>            
           </ModelVisual3D.Transform>
         </ModelVisual3D>
       </Viewport3D>

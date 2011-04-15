@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DFFViewer.ExtendedSlider"
+             xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+  <DockPanel LastChildFill="True">
+    <TextBox x:Name="MinimumValueTextBox" VerticalAlignment="Center" DockPanel.Dock="Left" Width="40" Text="{Binding Path=MinimumValue}" />
+    <TextBox x:Name="MaximumValueTextBox" VerticalAlignment="Center" DockPanel.Dock="Right" Width="40" Text="{Binding Path=MaximumValue}"/>
+    <StackPanel x:Name="SliderContainer" Orientation="Vertical">
+      <TextBlock Text="{Binding Value, StringFormat=\{0:F\}}" HorizontalAlignment="Center" />      
+      <Slider x:Name="Slider" Minimum="{Binding Path=MinimumValue}" Maximum="{Binding Path=MaximumValue}" Orientation="{Binding Path=Orientation}" Value="{Binding Path=Value}" />
+    </StackPanel>
+  </DockPanel>
+</UserControl>

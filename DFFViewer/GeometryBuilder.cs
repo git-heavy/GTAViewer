@@ -27,11 +27,9 @@ namespace DFFViewer
 
     #region Методы
 
-    private GeometryModel3D BuildModel(AtomicSection atomic)
-    {
-      GeometryModel3D model = new GeometryModel3D();
-      GeometrySection geometrySection = _clump.GeometryList.Geometries[atomic.Structure.GeometryIndex];
-      MeshGeometry3D mesh = new MeshGeometry3D();
+    private GeometryModel3D CreateModel(GeometrySection geometrySection)
+    {          
+      MeshGeometry3D mesh = new MeshGeometry3D();      
       if (geometrySection.Structure.VertexTranslation != null)
         foreach (Vector vertex in geometrySection.Structure.VertexTranslation)
           mesh.Positions.Add(new Point3D(vertex.X, vertex.Y, vertex.Z));
@@ -43,27 +41,27 @@ namespace DFFViewer
       if (geometrySection.Structure.Triangles != null)
         foreach (GeometryTriangle triangle in geometrySection.Structure.Triangles)
         {
-          mesh.TriangleIndices.Add(triangle.First - 1);
-          mesh.TriangleIndices.Add(triangle.Second - 1);
-          mesh.TriangleIndices.Add(triangle.Third - 1);
+          mesh.TriangleIndices.Add(triangle.First);
+          mesh.TriangleIndices.Add(triangle.Second);
+          mesh.TriangleIndices.Add(triangle.Third);
         }
-      model.Geometry = mesh;
-      return model;
+      return new GeometryModel3D() { Geometry = mesh };      
     }
 
-    private void ApplyTransformation(GeometryModel3D model, AtomicSection atomic)
+    private void ApplyTransformation(GeometryModel3D model, Frame[] frames, int currentFrameIndex)
     {
-      Transform3DGroup transformGroup = new Transform3DGroup();
-      int frameIndex = atomic.Structure.FrameIndex;
-      while (frameIndex != 0)
+      Transform3DGroup transformGroup = new Transform3DGroup();      
+      while (currentFrameIndex != 0)
       {
-        Frame frame = _clump.FrameList.Structure.Frames[frameIndex];        
+        Frame frame = frames[currentFrameIndex];
         TranslateTransform3D translate = new TranslateTransform3D(frame.Position.X, frame.Position.Y, frame.Position.Z);
         transformGroup.Children.Add(translate);
+        RotateTransform3D rotate = new RotateTransform3D();
+        
 
 
 
-        frameIndex = frame.FrameIndex;
+        currentFrameIndex = frame.FrameIndex;
       }      
     }
 
@@ -71,7 +69,8 @@ namespace DFFViewer
     {
       foreach (AtomicSection atomic in this._clump.Atomics)
       {
-        GeometryModel3D model = this.BuildModel(atomic);
+        GeometryModel3D model = this.CreateModel(this._clump.GeometryList.Geometries[atomic.Structure.GeometryIndex]);
+        //this.ApplyTransformation(model, this._clump.FrameList.Structure.Frames, atomic.Structure.FrameIndex);
         model.Material = new DiffuseMaterial(Brushes.Blue);
         this._modelGroup.Children.Add(model);
       }

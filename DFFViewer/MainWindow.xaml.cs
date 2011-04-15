@@ -3,7 +3,6 @@ using System.Windows.Media.Media3D;
 using DFFLib;
 using Microsoft.Win32;
 using RWLib;
-using System.Windows.Controls;
 
 namespace DFFViewer
 {
@@ -16,9 +15,7 @@ namespace DFFViewer
     {
       get { return ((OrthographicCamera)ModelViewPort.Camera).Width; }
       set { ((OrthographicCamera)ModelViewPort.Camera).Width = value; }
-    }
-
-    private OrthographicCamera camera;
+    }    
 
     public MainWindow()
     {
@@ -29,15 +26,14 @@ namespace DFFViewer
 
     private void InitViewPort()
     {
-      this.camera = new OrthographicCamera();
-      this.camera.LookDirection = new Vector3D(5, 0, 0);
-      this.camera.Width = 5;
-      ModelViewPort.Camera = this.camera;
+      //this.camera = new OrthographicCamera();
+      //this.camera.LookDirection = new Vector3D(5, 0, 0);
+      this.camera.Width = 10;
+      //ModelViewPort.Camera = this.camera;
       AmbientLight light = new AmbientLight();
       ModelVisual3D lightModel = new ModelVisual3D();
       lightModel.Content = light;
       ModelViewPort.Children.Add(lightModel);
-
     }
 
     private Model3DGroup group;
@@ -60,14 +56,6 @@ namespace DFFViewer
           MainModel.Content = group;
           return;
         }
-    }
-
-    private void Grid_MouseWheel_1(object sender, System.Windows.Input.MouseWheelEventArgs e)
-    {
-      this.camera.Position = new Point3D(
-        this.camera.Position.X,
-        this.camera.Position.Y,
-        this.camera.Position.Z - e.Delta / 250D);
     }
   }
 }
