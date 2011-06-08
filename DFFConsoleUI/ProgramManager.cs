@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
-using RWLib;
+using Heavy.RWLib;
+using Heavy.RWLib.Sections;
 
-namespace RWConsoleUI {
+namespace Heavy.RWConsoleUI {
     public class ProgramManager {
         /* private */
         private RootSection _root;

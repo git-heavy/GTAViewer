@@ -1,6 +1,7 @@
 ﻿using System.IO;
+using Heavy.RWLib.Sections;
 
-namespace RWLib {
+namespace Heavy.RWLib {
 
     public interface IStreamLoadeable {
         void LoadFromStream(BinaryReader br);

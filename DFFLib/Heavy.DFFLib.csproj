@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F7153AC-3150-499E-9AD8-0EC462C3B769}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Heavy.DFFLib</RootNamespace>
+    <AssemblyName>Heavy.DFFLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sections\AtomicSection.cs" />
+    <Compile Include="Sections\BinMeshPLGSection.cs" />
+    <Compile Include="Sections\ClumpSection.cs" />
+    <Compile Include="DFFSectionLoader.cs" />
+    <Compile Include="DFFTypes.cs" />
+    <Compile Include="Sections\FrameListSection.cs" />
+    <Compile Include="Sections\FrameSection.cs" />
+    <Compile Include="Sections\GeometryListSection.cs" />
+    <Compile Include="Sections\GeometrySection.cs" />
+    <Compile Include="Sections\MaterialEffectsPLGSection.cs" />
+    <Compile Include="Sections\MaterialListSection.cs" />
+    <Compile Include="Sections\MaterialSection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sections\ReflectionMaterialSection.cs" />
+    <Compile Include="Sections\SpecularMaterialSection.cs" />
+    <Compile Include="Sections\TextureSection.cs" />
+    <Compile Include="Sections\UVAnimationPLGSection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RWLib\Heavy.RWLib.csproj">
+      <Project>{FD3031FB-E0B8-4B9A-8EBB-4338588D06FE}</Project>
+      <Name>Heavy.RWLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

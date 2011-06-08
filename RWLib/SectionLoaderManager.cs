@@ -1,10 +1,8 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Heavy.RWLib.Sections;
 
-namespace RWLib {
+namespace Heavy.RWLib {
     public class SectionLoaderManager {
         public SectionLoaderManager() {
             _loaders = new List<ISectionLoader>();            

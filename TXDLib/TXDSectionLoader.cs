@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RWLib;
+﻿using Heavy.RWLib;
+using Heavy.RWLib.Sections;
+using Heavy.TXDLib.Sections;
 
-namespace TXDLib {
+namespace Heavy.TXDLib {
     class TXDSectionLoader: ISectionLoader {
         #region ISectionLoader
         RWSectionFactory ISectionLoader.GetFactory(RWSectionHeader sh, RWSection parent) {

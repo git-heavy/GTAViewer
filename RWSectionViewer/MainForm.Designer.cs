@@ -1,4 +1,4 @@
-﻿namespace RWSectionViewer {
+﻿namespace Heavy.RWSectionViewer {
     partial class MainForm {
         /// <summary>
         /// Required designer variable.

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
-using RWLib;
+using Heavy.RWLib;
+using Heavy.RWLib.Sections;
 
-namespace RWSectionViewer {
+namespace Heavy.RWSectionViewer {
     class ProgramManager {
         #region Singleton Implementation
         private static ProgramManager _instance;

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RWLib;
+﻿using System.Windows.Forms;
+using Heavy.RWLib.Sections;
 
-namespace RWSectionViewer {
+namespace Heavy.RWSectionViewer {
     class Class1 {
     }
 

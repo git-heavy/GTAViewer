@@ -1,27 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWLib", "RWLib\RWLib.csproj", "{FD3031FB-E0B8-4B9A-8EBB-4338588D06FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.RWLib", "RWLib\Heavy.RWLib.csproj", "{FD3031FB-E0B8-4B9A-8EBB-4338588D06FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWConsoleUI", "DFFConsoleUI\RWConsoleUI.csproj", "{9A66FF57-3E16-4DBF-9199-53E2CF81B83B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.RWConsoleUI", "DFFConsoleUI\Heavy.RWConsoleUI.csproj", "{9A66FF57-3E16-4DBF-9199-53E2CF81B83B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFFLib", "DFFLib\DFFLib.csproj", "{0F7153AC-3150-499E-9AD8-0EC462C3B769}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.DFFLib", "DFFLib\Heavy.DFFLib.csproj", "{0F7153AC-3150-499E-9AD8-0EC462C3B769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXDLib", "TXDLib\TXDLib.csproj", "{3C60D5B5-73E2-4E0A-8CB8-03E58F004953}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.TXDLib", "TXDLib\Heavy.TXDLib.csproj", "{3C60D5B5-73E2-4E0A-8CB8-03E58F004953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWSectionViewer", "RWSectionViewer\RWSectionViewer.csproj", "{005674B7-5AD8-43CB-8444-0EEE5E8BD842}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.RWSectionViewer", "RWSectionViewer\Heavy.RWSectionViewer.csproj", "{005674B7-5AD8-43CB-8444-0EEE5E8BD842}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{306AB0FC-33E8-45AD-B2D0-6F5A9B11E6D7}"
-	ProjectSection(SolutionItems) = preProject
-		GTAModelsViewer.vsmdi = GTAModelsViewer.vsmdi
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFFViewer", "DFFViewer\DFFViewer.csproj", "{A40A3BB4-0430-427C-A374-68D42DF1E09F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.DFFViewer", "DFFViewer\Heavy.DFFViewer.csproj", "{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = GTAModelsViewer.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -81,16 +73,16 @@ Global
 		{005674B7-5AD8-43CB-8444-0EEE5E8BD842}.Release|Mixed Platforms.Build.0 = Release|x86
 		{005674B7-5AD8-43CB-8444-0EEE5E8BD842}.Release|x86.ActiveCfg = Release|x86
 		{005674B7-5AD8-43CB-8444-0EEE5E8BD842}.Release|x86.Build.0 = Release|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Debug|x86.ActiveCfg = Debug|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Debug|x86.Build.0 = Debug|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Release|Any CPU.ActiveCfg = Release|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Release|Mixed Platforms.Build.0 = Release|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Release|x86.ActiveCfg = Release|x86
-		{A40A3BB4-0430-427C-A374-68D42DF1E09F}.Release|x86.Build.0 = Release|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|x86.ActiveCfg = Debug|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|x86.Build.0 = Debug|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|Any CPU.ActiveCfg = Release|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|x86.ActiveCfg = Release|x86
+		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

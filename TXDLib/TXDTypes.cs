@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using RWLib;
+using Heavy.RWLib;
 
-namespace TXDLib {
+namespace Heavy.TXDLib {
     public struct TextureNativeHeader : IStreamLoadeable {
         public int PlatformID { get; private set; }
         public TextureFilterFlags FilterFlags { get; private set; }

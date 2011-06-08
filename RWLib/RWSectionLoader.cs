@@ -1,5 +1,6 @@
-﻿
-namespace RWLib {      
+﻿using Heavy.RWLib.Sections;
+
+namespace Heavy.RWLib {      
     class RWSectionLoader: ISectionLoader {
         #region ISectionLoader
         RWSectionFactory ISectionLoader.GetFactory(RWSectionHeader sh, RWSection parent) {            

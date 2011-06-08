@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using RWLib;
+using Heavy.RWLib.Sections;
 
-namespace RWConsoleUI {
+namespace Heavy.RWConsoleUI {
     class CommandParser {                
         public Command Parse(string cmdString) {
             Command cmd = null;

@@ -1,6 +1,7 @@
 ﻿using System.IO;
+using Heavy.RWLib.Sections;
 
-namespace RWLib {
+namespace Heavy.RWLib {
     public abstract class RWSectionFactory {
         public bool IsDefault { get; internal set; }
         public abstract RWSection GetSection(BinaryReader br, RWSectionHeader sh);

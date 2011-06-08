@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Heavy.DFFViewer.View.MainWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"              
+             d:DesignHeight="295" d:DesignWidth="452">
+  <StackPanel Orientation="Vertical">
+    <Menu IsMainMenu="True">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open" Command="{Binding LoadModelCommand}"/>
+        <MenuItem Header="Close" Command="{Binding CloseModelCommand}"/>
+      </MenuItem>
+    </Menu>
+  </StackPanel>
+</UserControl>
+  

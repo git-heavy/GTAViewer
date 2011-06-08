@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using RWLib;
+using Heavy.RWLib;
+using Heavy.RWLib.Sections;
 
-namespace RWSectionViewer {
+namespace Heavy.RWSectionViewer {
     public partial class MainForm : Form {
         private enum SectionIndexes {
             siUnknown = 0,

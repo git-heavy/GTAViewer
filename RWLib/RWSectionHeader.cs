@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace RWLib {
+namespace Heavy.RWLib {
 
     public enum RWSections {
         RWRoot = -2,
