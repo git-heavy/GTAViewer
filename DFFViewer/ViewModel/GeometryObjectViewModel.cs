@@ -9,7 +9,7 @@ namespace Heavy.DFFViewer.ViewModel
 {
   public class GeometryObjectViewModel : EntityViewModel<GeometryObject>
   {
-    #region Поля
+    #region Поля    
 
     /// <summary>
     /// Координаты центра объекта.
@@ -20,11 +20,6 @@ namespace Heavy.DFFViewer.ViewModel
     /// Группа моделей.
     /// </summary>
     private Model3DGroup modelGroup;
-
-    /// <summary>
-    /// Команда загрузки модели.
-    /// </summary>
-    private DelegateCommand loadModelCommand;
 
     #endregion
 
@@ -59,13 +54,14 @@ namespace Heavy.DFFViewer.ViewModel
       }
     }
 
-    public DelegateCommand LoadModelCommand
+    #region EntityViewModel
+
+    public override string Name
     {
-      get
-      {
-        return this.loadModelCommand ?? (this.loadModelCommand = new DelegateCommand(this.LoadModelCommandExecute, this.LoadModelCommandCanExecute));
-      }
+      get { return string.Empty; }
     }
+
+    #endregion
 
     #endregion
 
@@ -80,8 +76,11 @@ namespace Heavy.DFFViewer.ViewModel
       foreach (AtomicSection atomic in this.Entity.Clump.Atomics){
         GeometryModel3D model = this.InitializeModel(atomic);
         this.ApplyModelTransformation(atomic, model);
+        // TODO: материал получать из метаданных
+        model.Material = new DiffuseMaterial(System.Windows.Media.Brushes.Blue);        
         group.Children.Add(model);
       }
+      this.ModelGroup = group;
     }
 
     /// <summary>
@@ -112,18 +111,8 @@ namespace Heavy.DFFViewer.ViewModel
           mesh.TriangleIndices.Add(triangle.First);
           mesh.TriangleIndices.Add(triangle.Second);
           mesh.TriangleIndices.Add(triangle.Third);
-        }
+        }   
       return new GeometryModel3D() { Geometry = mesh };
-    }
-
-    private void LoadModelCommandExecute(object parameter)
-    {
-
-    }
-
-    private bool LoadModelCommandCanExecute(object parameter)
-    {
-      return true;
     }
 
     #endregion
@@ -142,13 +131,6 @@ namespace Heavy.DFFViewer.ViewModel
 
     #endregion    
 
-    #region EntityViewModel
 
-    public override string Name
-    {
-      get { return string.Empty; }
-    }
-
-    #endregion
   }
 }

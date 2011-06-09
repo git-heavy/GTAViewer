@@ -8,8 +8,8 @@
     <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
       <v:MainWindowView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:GeometryObjectViewModel}">
+    <!--<DataTemplate DataType="{x:Type vm:GeometryObjectViewModel}">
       <v:GeometryObjectView/>
-    </DataTemplate>
+    </DataTemplate>-->
   </Application.Resources>
 </Application>

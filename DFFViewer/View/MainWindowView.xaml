@@ -4,14 +4,21 @@
              mc:Ignorable="d" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"              
+             xmlns:v="clr-namespace:Heavy.DFFViewer.View"
              d:DesignHeight="295" d:DesignWidth="452">
-  <StackPanel Orientation="Vertical">
-    <Menu IsMainMenu="True">
+  <UserControl.Resources>
+    <v:GeometryObjectView x:Key="GeometryObjectView" DataContext="{Binding GeometryViewModel}"/>
+  </UserControl.Resources>
+  <DockPanel LastChildFill="True">
+    <Menu IsMainMenu="True" DockPanel.Dock="Top">
       <MenuItem Header="_File">
         <MenuItem Header="_Open" Command="{Binding LoadModelCommand}"/>
         <MenuItem Header="Close" Command="{Binding CloseModelCommand}"/>
       </MenuItem>
     </Menu>
-  </StackPanel>
+    <StatusBar DockPanel.Dock="Bottom">
+      <StatusBarItem></StatusBarItem>
+    </StatusBar>
+    <StaticResource ResourceKey="GeometryObjectView" />
+  </DockPanel>
 </UserControl>
-  

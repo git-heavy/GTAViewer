@@ -5,7 +5,7 @@ using Heavy.RWLib.Sections;
 
 namespace Heavy.DFFViewer.ViewModel
 {
-  public class MainWindowViewModel: BaseViewModel
+  public class MainWindowViewModel : BaseViewModel
   {
     #region Поля
 
@@ -16,7 +16,7 @@ namespace Heavy.DFFViewer.ViewModel
     private GeometryObjectViewModel geometryViewModel;
 
     private string fileName;
-    
+
     #endregion
 
     #region Свойства
@@ -36,7 +36,7 @@ namespace Heavy.DFFViewer.ViewModel
       get { return this.geometryViewModel; }
       protected set
       {
-        this.geometryViewModel = value; 
+        this.geometryViewModel = value;
         this.OnPropertyChanged("GeometryViewModel");
       }
     }
@@ -46,9 +46,21 @@ namespace Heavy.DFFViewer.ViewModel
       get { return this.fileName; }
       private set
       {
-        this.fileName = value;
-        this.OnPropertyChanged("FileName");
-        this.OnPropertyChanged("Name");
+        if (string.Compare(this.fileName, value, true) != 0)
+        {
+          this.fileName = value;
+          if (System.IO.File.Exists(this.fileName))
+          {
+            RootSection root = ModelManager.Instance.LoadFile(this.fileName);
+            this.GeometryViewModel = new GeometryObjectViewModel(new GeometryObject(root));
+          }
+          else
+          {
+            this.GeometryViewModel = null;
+          }
+          this.OnPropertyChanged("FileName");
+          this.OnPropertyChanged("Name");
+        }
       }
     }
 
@@ -75,11 +87,7 @@ namespace Heavy.DFFViewer.ViewModel
         dialog.Filter = (@"DFF files (*.dff)|*.dff|All files (*.*)|*.*");
         dialog.Multiselect = false;
         if (dialog.ShowDialog() == DialogResult.OK)
-        {
           this.FileName = dialog.FileName;
-          RootSection root = ModelManager.Instance.LoadFile(dialog.FileName);
-          this.GeometryViewModel = new GeometryObjectViewModel(new GeometryObject(root));
-        }
       }
     }
 
@@ -99,8 +107,6 @@ namespace Heavy.DFFViewer.ViewModel
       return !string.IsNullOrEmpty(this.FileName);
     }
 
-    #endregion 
-
-    
+    #endregion
   }
 }
