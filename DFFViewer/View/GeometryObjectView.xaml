@@ -4,21 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="397" d:DesignWidth="568">
   <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="100"/>
-      <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <DockPanel LastChildFill="False">
-      <Slider DockPanel.Dock="Top" x:Name="cameraWidthSlider" Minimum="0" Maximum="20"/>
-    </DockPanel>
-    <Viewport3D Grid.Column="1" ClipToBounds="True">
+    <Viewport3D ClipToBounds="True">
       <Viewport3D.Camera>
-        <OrthographicCamera Width="{Binding ElementName=cameraWidthSlider, Path=Value}" LookDirection="5,0,0"/>
+        <OrthographicCamera Width="{Binding CameraWidth}" LookDirection="5,0,0"/>
       </Viewport3D.Camera>
       <Viewport3D.Children>
         <ModelVisual3D>

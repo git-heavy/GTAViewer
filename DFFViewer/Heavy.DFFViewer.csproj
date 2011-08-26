@@ -37,28 +37,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended, Version=1.4.0.2, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Entity.cs" />
-    <Compile Include="Model\GeometryObject.cs" />
     <Compile Include="ViewModel\EntityCollectionViewModel.cs" />
     <Compile Include="ViewModel\EntityViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -111,7 +107,6 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DFFLib\Heavy.DFFLib.csproj">
       <Project>{0F7153AC-3150-499E-9AD8-0EC462C3B769}</Project>
@@ -121,10 +116,9 @@
       <Project>{FD3031FB-E0B8-4B9A-8EBB-4338588D06FE}</Project>
       <Name>Heavy.RWLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TXDLib\Heavy.TXDLib.csproj">
-      <Project>{3C60D5B5-73E2-4E0A-8CB8-03E58F004953}</Project>
-      <Name>Heavy.TXDLib</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

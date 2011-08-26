@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"              
              xmlns:v="clr-namespace:Heavy.DFFViewer.View"
-             d:DesignHeight="295" d:DesignWidth="452">
+             xmlns:convert="clr-namespace:Heavy.DFFViewer.View.Converters"
+             d:DesignHeight="405" d:DesignWidth="681" xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended">
   <UserControl.Resources>
-    <v:GeometryObjectView x:Key="GeometryObjectView" DataContext="{Binding GeometryViewModel}"/>
+    <v:GeometryObjectView x:Key="GeometryObjectView" DataContext="{Binding GeometryViewModel}" Grid.Row="0" Grid.Column="1"/>
+    <convert:AssignedToBoolConverter x:Key="AssignedToBoolConverter"/>
   </UserControl.Resources>
-  <DockPanel LastChildFill="True">
+  <DockPanel>
     <Menu IsMainMenu="True" DockPanel.Dock="Top">
       <MenuItem Header="_File">
         <MenuItem Header="_Open" Command="{Binding LoadModelCommand}"/>
@@ -19,6 +21,19 @@
     <StatusBar DockPanel.Dock="Bottom">
       <StatusBarItem></StatusBarItem>
     </StatusBar>
-    <StaticResource ResourceKey="GeometryObjectView" />
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="220"/>
+        <ColumnDefinition Width="461*"/>
+      </Grid.ColumnDefinitions>
+      <StaticResource ResourceKey="GeometryObjectView"  />
+      <StackPanel Orientation="Vertical" IsEnabled="{Binding GeometryViewModel, Converter={StaticResource AssignedToBoolConverter}}" HorizontalAlignment="Left" Width="220">
+        <extToolkit:IntegerUpDown Name="integerUpDown1" Value="{Binding GeometryViewModel.CameraWidth}" />
+        <ListBox ItemsSource="{Binding GeometryViewModel.ModelGroup.Children}"></ListBox>
+      </StackPanel>
+    </Grid>
   </DockPanel>
 </UserControl>

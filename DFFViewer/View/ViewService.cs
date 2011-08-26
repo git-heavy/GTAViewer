@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using Heavy.DFFViewer.ViewModel;
 using System.Windows.Data;
+using Heavy.DFFViewer.ViewModel;
 
 namespace Heavy.DFFViewer.View
 {

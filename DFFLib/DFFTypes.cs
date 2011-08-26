@@ -8,7 +8,7 @@ namespace Heavy.DFFLib
   {
     public Vector[] RotationMatrix;
     public Vector Position;
-    public int FrameIndex;
+    public int ParentFrame;
     public int Flags;
     public Frame()
     {
@@ -23,7 +23,7 @@ namespace Heavy.DFFLib
         vct.LoadFromStream(br);
       }
       this.Position.LoadFromStream(br);
-      this.FrameIndex = br.ReadInt32();
+      this.ParentFrame = br.ReadInt32();
       this.Flags = br.ReadInt32();
     }
     #endregion

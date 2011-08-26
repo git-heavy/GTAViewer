@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 using Heavy.DFFViewer.Helper;
 using Heavy.DFFViewer.Model;
-using Heavy.RWLib.Sections;
 
 namespace Heavy.DFFViewer.ViewModel
 {
@@ -46,18 +46,10 @@ namespace Heavy.DFFViewer.ViewModel
       get { return this.fileName; }
       private set
       {
-        if (string.Compare(this.fileName, value, true) != 0)
+        if (string.Compare(this.fileName, value, true) != 0)        
         {
           this.fileName = value;
-          if (System.IO.File.Exists(this.fileName))
-          {
-            RootSection root = ModelManager.Instance.LoadFile(this.fileName);
-            this.GeometryViewModel = new GeometryObjectViewModel(new GeometryObject(root));
-          }
-          else
-          {
-            this.GeometryViewModel = null;
-          }
+          this.GeometryViewModel = File.Exists(this.fileName) ? new GeometryObjectViewModel(new GeometryObject(ModelManager.Instance.LoadFile(this.fileName))) : null;
           this.OnPropertyChanged("FileName");
           this.OnPropertyChanged("Name");
         }
@@ -81,13 +73,17 @@ namespace Heavy.DFFViewer.ViewModel
     #region Методы
 
     private void LoadModelCommandExecute(object parameter)
-    {
+    {      
       using (OpenFileDialog dialog = new OpenFileDialog())
       {
         dialog.Filter = (@"DFF files (*.dff)|*.dff|All files (*.*)|*.*");
         dialog.Multiselect = false;
         if (dialog.ShowDialog() == DialogResult.OK)
+        {
+          // TODO: Изменения не подхватываются автоматически, поэтому сначала присваиваем null.
+          this.FileName = string.Empty;
           this.FileName = dialog.FileName;
+        }
       }
     }
 
@@ -99,7 +95,6 @@ namespace Heavy.DFFViewer.ViewModel
     private void CloseModelCommandExecute(object parameter)
     {
       this.FileName = string.Empty;
-      this.GeometryViewModel = null;
     }
 
     private bool CloseModelCommandCanExecute(object parameter)
