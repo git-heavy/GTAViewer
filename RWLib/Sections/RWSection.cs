@@ -13,21 +13,21 @@ namespace Heavy.RWLib.Sections
 
     public List<RWSection> Childs { get; set; }
 
-    public static RWSections SectionType { get { return RWSections.RWDefault; } }
+    public virtual RWSections SectionType { get { return RWSections.RWDefault; } }
 
     public static RWSections ParentSectionType { get { return RWSections.RWDefault; } }
 
     #endregion
 
     #region Конструкторы
-    
+
     public RWSection()
     {
       Childs = new List<RWSection>();
     }
 
     #endregion
-    
+
     #region Методы
 
     public virtual void LoadFromStream(BinaryReader br)

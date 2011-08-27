@@ -6,7 +6,7 @@
 
     #region RWSection
 
-    public static new RWSections SectionType { get { return RWSections.RWRoot; } }
+    public override RWSections SectionType { get { return RWSections.RWRoot; } }
 
     #endregion
 

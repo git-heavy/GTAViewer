@@ -24,7 +24,7 @@ namespace Heavy.DFFLib.Sections
       get { return this.Childs.OfType<TextureExtensionSection>().Single(); }
     }
     #region RWSection
-    public static new RWSections SectionType { get { return RWSections.RWTexture; } }
+    public override RWSections SectionType { get { return RWSections.RWTexture; } }
     #endregion
   }
 

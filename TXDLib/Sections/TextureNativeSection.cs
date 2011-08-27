@@ -17,7 +17,7 @@ namespace Heavy.TXDLib.Sections
       }
     }
     #region RWSection
-    public static new RWSections SectionType { get { return RWSections.RWTextureNative; } }
+    public override RWSections SectionType { get { return RWSections.RWTextureNative; } }
     #endregion
   }
 

@@ -4,11 +4,7 @@
   {
     #region Свойства
 
-    #region RWSection
-
-    public static new RWSections SectionType { get { return RWSections.RWExtension; } }
-
-    #endregion
+    public override RWSections SectionType { get { return RWSections.RWExtension; } }
 
     #endregion
   }

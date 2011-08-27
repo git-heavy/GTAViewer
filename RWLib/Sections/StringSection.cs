@@ -11,7 +11,7 @@ namespace Heavy.RWLib.Sections
 
     #region RWSection
 
-    public static new RWSections SectionType { get { return RWSections.RWString; } }
+    public override RWSections SectionType { get { return RWSections.RWString; } }
 
     #endregion
 

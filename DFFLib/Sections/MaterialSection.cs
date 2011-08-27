@@ -20,7 +20,7 @@ namespace Heavy.DFFLib.Sections
       get { return this.Childs.OfType<MaterialExtensionSection>().Single(); }
     }
     #region RWSection
-    public static new RWSections SectionType { get { return RWSections.RWMaterial; } }
+    public override RWSections SectionType { get { return RWSections.RWMaterial; } }
     #endregion
   }
 

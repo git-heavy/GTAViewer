@@ -1,8 +1,12 @@
-﻿/// blah-blah-blah.
+﻿using System.Windows;
+using System.Windows.Input;
+using Heavy.DFFLib.Sections;
+using Heavy.RWLib;
+using Heavy.RWLib.Sections;
+using Microsoft.Win32;
+
 namespace DFFViewer2
 {
-  using System.Windows;
-
   /// <summary>
   /// Interaction logic for MainWindow.xaml
   /// </summary>
@@ -20,5 +24,27 @@ namespace DFFViewer2
     }
 
     #endregion
+
+    private void OpenCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+      OpenFileDialog dialog = new OpenFileDialog()
+      {
+        CheckFileExists = true,
+        CheckPathExists = true,
+        Multiselect = false,
+        DefaultExt = "*.dff"
+      };
+
+      if (dialog.ShowDialog().Value)
+      {
+        RootSection root = SectionLoaderManager.Instance.LoadFromStream(dialog.OpenFile());
+        this.modelViewPort.ModelMetadata = (ClumpSection)root.Childs[0];
+      }
+    }
+
+    private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+      e.CanExecute = true;
+    }
   }
 }

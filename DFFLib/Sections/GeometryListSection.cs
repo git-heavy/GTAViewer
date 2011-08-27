@@ -21,7 +21,7 @@ namespace Heavy.DFFLib.Sections
 
     #region RWSection
 
-    public static new RWSections SectionType { get { return RWSections.RWGeometryList; } }
+    public override RWSections SectionType { get { return RWSections.RWGeometryList; } }
 
     #endregion
 

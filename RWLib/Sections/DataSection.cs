@@ -6,12 +6,12 @@ namespace Heavy.RWLib.Sections
   {
     #region Методы
 
-    protected abstract void LoadData(BinaryReader br);
+    protected abstract void LoadData(BinaryReader reader);
 
-    public override void LoadFromStream(BinaryReader br)
+    public override void LoadFromStream(BinaryReader reader)
     {
-      LoadData(br);
-      base.LoadFromStream(br);
+      LoadData(reader);
+      base.LoadFromStream(reader);
     }
 
     #endregion

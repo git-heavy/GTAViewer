@@ -2,81 +2,103 @@
 using System.IO;
 using Heavy.RWLib.Sections;
 
-namespace Heavy.RWLib {
-    public class SectionLoaderManager {
-        public SectionLoaderManager() {
-            _loaders = new List<ISectionLoader>();            
-        }
-        #region Singleton Implementation
-        private static SectionLoaderManager _instance;
-        public static SectionLoaderManager Instance {
-            get {
-                if (_instance == null) {
-                    _instance = new SectionLoaderManager();
-                }
-                return _instance;
-            }
-        }
-        #endregion
-                             
-        private List<ISectionLoader> _loaders;
+namespace Heavy.RWLib
+{
+  /// <summary>
+  /// Менеджер загрузки секций.
+  /// </summary>
+  public class SectionLoaderManager
+  {
+    #region Singleton Implementation
 
-        public void RegisterLoader(ISectionLoader sectionLoader) {
-            _loaders.Add(sectionLoader);
-        }
+    private static SectionLoaderManager instance;
 
-        private RWSectionFactory GetFactory(RWSectionHeader sh, RWSection parent) {
-            RWSectionFactory factory = null;
-            foreach (ISectionLoader loader in _loaders) {
-                factory = loader.GetFactory(sh, parent);
-                if (factory != null) {
-                    return factory;
-                }
-            }            
-            return (new RWSectionLoader() as ISectionLoader).GetFactory(sh, parent);            
-        }
-        
-        private RWSection LoadSection(BinaryReader br, RWSection parentSection) {
-            RWSectionHeader sh = new RWSectionHeader();
-            sh.LoadFromStream(br);            
-            RWSection section = this.GetFactory(sh, parentSection).GetSection(br, sh);
-            if ((section is UnknownSection) && IsContainerSection(br, sh, parentSection)) {
-                section = new RWSectionFactory<ContainerSection>().GetSection(br, sh);
-            }
-            return section;
-        }
-
-        private bool IsContainerSection(BinaryReader br, RWSectionHeader sh, RWSection parent) {
-            br.BaseStream.Seek(sh.StartPos, SeekOrigin.Begin);
-            if (sh.Size > 12) {
-                RWSectionHeader newHeader = new RWSectionHeader();
-                newHeader.LoadFromStream(br);
-                if ((newHeader.Version == sh.Version) && (newHeader.Size < sh.Size)) {
-                    br.BaseStream.Seek(sh.StartPos, SeekOrigin.Begin);
-                    return true;
-                }
-            }
-            br.BaseStream.Seek(sh.StartPos + sh.Size, SeekOrigin.Begin);
-            return false;
-        }
-
-        internal void LoadSections(BinaryReader br, RWSection parentSection) {
-            while (br.BaseStream.Position < parentSection.Header.StartPos + parentSection.Header.Size) {
-                RWSection section = LoadSection(br, parentSection);
-                if (section != null) {
-                    section.Parent = parentSection;
-                    parentSection.Childs.Add(section);
-                }
-            }
-        }
-
-        public RootSection LoadFromStream(FileStream fs) {
-            fs.Seek(0, SeekOrigin.Begin);
-            using (BinaryReader br = new BinaryReader(fs)) {
-                RootSection rootSection = new RootSectionFactory().GetSection(br, RWSectionHeader.GetRootHeader(br)) as RootSection;
-                LoadSections(br, rootSection);
-                return rootSection;
-            }
-        }
+    public static SectionLoaderManager Instance
+    {
+      get
+      {
+        if (instance == null)
+          instance = new SectionLoaderManager();
+        return instance;
+      }
     }
+
+    #endregion
+
+    #region Константы
+
+    private const byte HeaderSize = 12;
+
+    #endregion
+
+    private List<ISectionLoader> loaders = new List<ISectionLoader>();
+
+    public void RegisterLoader(ISectionLoader sectionLoader)
+    {
+      loaders.Add(sectionLoader);
+    }
+
+    private IRWSectionFactory GetFactory(RWSectionHeader header, RWSection parent)
+    {
+      IRWSectionFactory factory = null;
+      foreach (ISectionLoader loader in loaders)
+      {
+        factory = loader.GetFactory(header, parent);
+        if (factory != null)
+          return factory;
+      }
+      return (new RWSectionLoader() as ISectionLoader).GetFactory(header, parent);
+    }
+
+    private RWSection LoadSection(BinaryReader reader, RWSection parentSection)
+    {
+      RWSectionHeader header = new RWSectionHeader();
+      header.LoadFromStream(reader);
+      RWSection section = this.GetFactory(header, parentSection).GetSection(reader, header);
+      if ((section is UnknownSection) && IsContainerSection(reader, header, parentSection))
+        section = (new RWSectionFactory<ContainerSection>() as IRWSectionFactory).GetSection(reader, header);
+      return section;
+    }
+
+    private bool IsContainerSection(BinaryReader reader, RWSectionHeader header, RWSection parent)
+    {
+      reader.BaseStream.Seek(header.StartPos, SeekOrigin.Begin);
+      if (header.Size > HeaderSize)
+      {
+        RWSectionHeader newHeader = new RWSectionHeader();
+        newHeader.LoadFromStream(reader);
+        if ((newHeader.Version == header.Version) && (newHeader.Size < header.Size))
+        {
+          reader.BaseStream.Seek(header.StartPos, SeekOrigin.Begin);
+          return true;
+        }
+      }
+      reader.BaseStream.Seek(header.StartPos + header.Size, SeekOrigin.Begin);
+      return false;
+    }
+
+    internal void LoadSections(BinaryReader reader, RWSection parent)
+    {
+      while (reader.BaseStream.Position < parent.Header.StartPos + parent.Header.Size)
+      {
+        RWSection section = LoadSection(reader, parent);
+        if (section != null)
+        {
+          section.Parent = parent;
+          parent.Childs.Add(section);
+        }
+      }
+    }
+
+    public RootSection LoadFromStream(Stream stream)
+    {
+      stream.Seek(0, SeekOrigin.Begin);
+      using (BinaryReader reader = new BinaryReader(stream))
+      {
+        RootSection rootSection = new RootSectionFactory().GetSection(reader, RWSectionHeader.GetRootHeader(reader)) as RootSection;
+        LoadSections(reader, rootSection);
+        return rootSection;
+      }
+    }
+  }
 }

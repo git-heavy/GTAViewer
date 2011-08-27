@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.TXDLib", "TXDLib\Heav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.RWSectionViewer", "RWSectionViewer\Heavy.RWSectionViewer.csproj", "{005674B7-5AD8-43CB-8444-0EEE5E8BD842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heavy.DFFViewer", "DFFViewer\Heavy.DFFViewer.csproj", "{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DFFViewer2", "DFFViewer2\DFFViewer2.csproj", "{4717EB5A-1C90-4CE5-831D-1AD2AF3D7F2A}"
 EndProject
 Global
@@ -75,16 +73,6 @@ Global
 		{005674B7-5AD8-43CB-8444-0EEE5E8BD842}.Release|Mixed Platforms.Build.0 = Release|x86
 		{005674B7-5AD8-43CB-8444-0EEE5E8BD842}.Release|x86.ActiveCfg = Release|x86
 		{005674B7-5AD8-43CB-8444-0EEE5E8BD842}.Release|x86.Build.0 = Release|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|x86.ActiveCfg = Debug|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Debug|x86.Build.0 = Debug|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|Any CPU.ActiveCfg = Release|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|Mixed Platforms.Build.0 = Release|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|x86.ActiveCfg = Release|x86
-		{2CACE284-9FD9-4A1D-BFBA-7013EBAB1948}.Release|x86.Build.0 = Release|x86
 		{4717EB5A-1C90-4CE5-831D-1AD2AF3D7F2A}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{4717EB5A-1C90-4CE5-831D-1AD2AF3D7F2A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{4717EB5A-1C90-4CE5-831D-1AD2AF3D7F2A}.Debug|Mixed Platforms.Build.0 = Debug|x86

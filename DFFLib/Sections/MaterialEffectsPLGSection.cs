@@ -13,7 +13,7 @@ namespace Heavy.DFFLib.Sections
     }
     #endregion
     #region RWSection
-    public static new RWSections SectionType { get { return RWSections.RWMaterialEffectsPLG; } }
+    public override RWSections SectionType { get { return RWSections.RWMaterialEffectsPLG; } }
     #endregion
   }
 }

@@ -12,7 +12,7 @@ namespace Heavy.DFFLib.Sections
 
     #region RWSection
 
-    public static new RWSections SectionType { get { return RWSections.RWFrame; } }
+    public override RWSections SectionType { get { return RWSections.RWFrame; } }
 
     #endregion
 

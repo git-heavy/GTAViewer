@@ -7,9 +7,10 @@ namespace Heavy.DFFLib
   public class DFFSectionLoader : ISectionLoader
   {
     #region ISectionLoader
-    RWSectionFactory ISectionLoader.GetFactory(RWSectionHeader sh, RWSection parent)
+
+    public IRWSectionFactory GetFactory(RWSectionHeader header, RWSection parent)
     {
-      switch (sh.Id)
+      switch (header.Id)
       {
         case RWSections.RWExtension:
           switch (parent.Header.Id)
@@ -83,6 +84,7 @@ namespace Heavy.DFFLib
           return null;
       }
     }
+
     #endregion
   }
 }

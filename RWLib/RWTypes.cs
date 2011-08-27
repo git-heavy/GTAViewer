@@ -1,53 +1,100 @@
 ﻿using System.IO;
 using Heavy.RWLib.Sections;
 
-namespace Heavy.RWLib {
+namespace Heavy.RWLib
+{
+  /// <summary>
+  /// Интерфейс загружаемого из потока элемента.
+  /// </summary>
+  public interface IStreamLoadeable
+  {
+    /// <summary>
+    /// Загрузить из потока.
+    /// </summary>
+    /// <param name="reader">Reader потока.</param>
+    void LoadFromStream(BinaryReader reader);
+  }
 
-    public interface IStreamLoadeable {
-        void LoadFromStream(BinaryReader br);
+  /// <summary>
+  /// Интерфейс загрузчика секций.
+  /// </summary>
+  public interface ISectionLoader
+  {
+    /// <summary>
+    /// Получить фабрику секций.
+    /// </summary>
+    /// <param name="header">Заголовок секции.</param>
+    /// <param name="parent">Родительская секция.</param>
+    /// <returns>Фабрика секций.</returns>
+    IRWSectionFactory GetFactory(RWSectionHeader header, RWSection parent);
+  }
+
+  /// <summary>
+  /// Вектор.
+  /// </summary>
+  public struct Vector : IStreamLoadeable
+  {
+    public float X;
+
+    public float Y;
+
+    public float Z;
+
+    #region IStreamLoadeable
+
+    public void LoadFromStream(BinaryReader reader)
+    {
+      this.X = reader.ReadSingle();
+      this.Y = reader.ReadSingle();
+      this.Z = reader.ReadSingle();
     }
 
-    public interface ISectionLoader {
-        RWSectionFactory GetFactory(RWSectionHeader sh, RWSection parent);
+    #endregion
+  }
+
+  /// <summary>
+  /// Цвет.
+  /// </summary>
+  public struct ColorAmount : IStreamLoadeable
+  {
+    public float R;
+
+    public float G;
+
+    public float B;
+
+    public float A;
+
+    #region IStreamLoadeable
+
+    public void LoadFromStream(BinaryReader reader)
+    {
+      this.R = reader.ReadSingle();
+      this.G = reader.ReadSingle();
+      this.B = reader.ReadSingle();
+      this.A = reader.ReadSingle();
     }
 
+    #endregion
+  }
 
-    public struct Vector : IStreamLoadeable {
-        public float X;
-        public float Y;
-        public float Z;
-        #region IStreamLoadeable
-        public void LoadFromStream(BinaryReader br) {
-            this.X = br.ReadSingle();
-            this.Y = br.ReadSingle();
-            this.Z = br.ReadSingle();
-        }
-        #endregion
-    }    
+  /// <summary>
+  /// Координаты текстуры.
+  /// </summary>
+  public struct TextureCoordinate : IStreamLoadeable
+  {
+    public float U;
 
-    public struct ColorAmount : IStreamLoadeable {
-        public float R;
-        public float G;
-        public float B;
-        public float A;
-        #region IStreamLoadeable
-        public void LoadFromStream(BinaryReader br) {
-            this.R = br.ReadSingle();
-            this.G = br.ReadSingle();
-            this.B = br.ReadSingle();
-            this.A = br.ReadSingle();
-        }
-        #endregion
+    public float V;
+
+    #region IStreamLoadeable
+
+    public void LoadFromStream(BinaryReader reader)
+    {
+      this.U = reader.ReadSingle();
+      this.V = reader.ReadSingle();
     }
 
-    public struct TextureCoordinate : IStreamLoadeable {
-        public float U;
-        public float V;
-        #region IStreamLoadeable
-        public void LoadFromStream(BinaryReader br) {
-            this.U = br.ReadSingle();
-            this.V = br.ReadSingle();
-        }
-        #endregion
-    } 
+    #endregion
+  }
 }

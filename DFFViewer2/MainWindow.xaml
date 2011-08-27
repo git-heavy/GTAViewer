@@ -1,18 +1,16 @@
 ﻿<Window x:Class="DFFViewer2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:DFFViewer2"
-        Title="MainWindow" Height="350" Width="525">
-  <Window.Resources>
-    <local:ModelViewPort x:Key="ModelViewPort"/>
-  </Window.Resources>
+        Title="MainWindow" Height="350" Width="525" xmlns:my="clr-namespace:DFFViewer2">
   <Window.CommandBindings>
-    
+    <CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommandExecuted" CanExecute="CommandBinding_CanExecute" />
   </Window.CommandBindings>
   <StackPanel>
     <Menu IsMainMenu="True">
-      <MenuItem Header="File" />
+      <MenuItem Header="_File">
+        <MenuItem Command="ApplicationCommands.Open" />
+      </MenuItem>
     </Menu>
-    
+    <my:ModelViewPort x:Name="modelViewPort" />
   </StackPanel>
 </Window>

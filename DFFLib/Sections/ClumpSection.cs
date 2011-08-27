@@ -11,7 +11,7 @@ namespace Heavy.DFFLib.Sections
 
     #region RWSection
 
-    public static new RWSections SectionType { get { return RWSections.RWClump; } }
+    public override RWSections SectionType { get { return RWSections.RWClump; } }
 
     #endregion
 
