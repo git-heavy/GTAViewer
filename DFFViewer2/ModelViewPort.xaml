@@ -1,10 +1,8 @@
-﻿<UserControl x:Class="DFFViewer2.ModelViewPort"
+﻿<UserControl x:Class="Heavy.DFFViewer.ModelViewPort"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:my="clr-namespace:Heavy.DFFViewer">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
@@ -14,20 +12,14 @@
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
-    <Grid Grid.Column="0" Grid.Row="0" x:Name="SettingsGrid">
-
-    </Grid>
-
-    <Viewport3D Grid.Column="1" Grid.Row="0">
-      <Viewport3D.Camera>
-        <PerspectiveCamera>
-          
-        </PerspectiveCamera>
-      </Viewport3D.Camera>
+    <my:PerspectiveCameraSettings x:Name="cameraSettings" Grid.Column="0" Grid.Row="0" Width="150" Camera="{Binding PCamera}"/>
+    
+    <Viewport3D Grid.Column="1" Grid.Row="0" Camera="{Binding PCamera}">      
       <Viewport3D.Children>
-        <ModelVisual3D Content="{Binding Light}" />        
-        <ModelVisual3D Content="{Binding ModelGroup}" />                 
+        <ModelVisual3D Content="{Binding Light}" />
+        <ModelVisual3D Content="{Binding ModelGroup}" />
       </Viewport3D.Children>
     </Viewport3D>
+    
   </Grid>
 </UserControl>

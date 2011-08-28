@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel;
-using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using Heavy.DFFLib;
 using Heavy.DFFLib.Sections;
-using Heavy.RWLib;
 
-namespace DFFViewer2
+namespace Heavy.DFFViewer
 {
   /// <summary>
   /// Interaction logic for ModelViewPort.xaml
@@ -32,7 +30,7 @@ namespace DFFViewer2
     /// </summary>
     public Light Light
     {
-      get { return null; }
+      get { return this.light; }
     }
 
     private ClumpSection modelMetadata;
@@ -50,7 +48,19 @@ namespace DFFViewer2
           this.modelMetadata = value;
           this.CreateModelGroup();
           this.OnPropertyChanged("ModelGroup");
+          this.OnPropertyChanged("PCamera");
+          this.OnPropertyChanged("Light");
         }
+      }
+    }
+
+    private Camera camera = new PerspectiveCamera() { FieldOfView = 10, Position = new Point3D(1, 2, 3), LookDirection = new Vector3D(1, 0, 0) };
+
+    public Camera PCamera
+    {
+      get
+      {
+        return this.camera;
       }
     }
 
@@ -85,7 +95,7 @@ namespace DFFViewer2
     /// <returns>3D модель.</returns>
     private GeometryModel3D CreateModel(AtomicSection atomic)
     {
-      GeometryModel3D model = new GeometryModel3D(this.CreateGeometry(this.ModelMetadata.GeometryList.Geometries[atomic.Structure.GeometryIndex]), null);
+      GeometryModel3D model = new GeometryModel3D(this.CreateGeometry(this.ModelMetadata.GeometryList.Geometries[atomic.Structure.GeometryIndex]), new DiffuseMaterial(Brushes.Azure));
       this.ApplyTransformation(model, this.ModelMetadata.FrameList.Structure.Frames[atomic.Structure.FrameIndex]);
       return model;
     }
@@ -112,10 +122,10 @@ namespace DFFViewer2
     {
       MeshGeometry3D meshGeometry = new MeshGeometry3D();
       if (geometrySection.Structure.VertexTranslation != null)
-        foreach (Vector vertex in geometrySection.Structure.VertexTranslation)
+        foreach (Heavy.RWLib.Vector vertex in geometrySection.Structure.VertexTranslation)
           meshGeometry.Positions.Add(new Point3D(vertex.X, vertex.Y, vertex.Z));
       if (geometrySection.Structure.Normals != null)
-        foreach (Vector normal in geometrySection.Structure.Normals)
+        foreach (Heavy.RWLib.Vector normal in geometrySection.Structure.Normals)
           meshGeometry.Normals.Add(new Vector3D(normal.X, normal.Y, normal.Z));
       if (geometrySection.Structure.Triangles != null)
         foreach (GeometryTriangle triangle in geometrySection.Structure.Triangles)
@@ -162,6 +172,13 @@ namespace DFFViewer2
     public ModelViewPort()
     {
       InitializeComponent();
+      this.DataContext = this;
+      this.cameraSettings.SettingsChanged += new System.EventHandler(cameraSettings_SettingsChanged);
+    }
+
+    private void cameraSettings_SettingsChanged(object sender, System.EventArgs e)
+    {
+      this.OnPropertyChanged("PCamera");
     }
 
     #endregion

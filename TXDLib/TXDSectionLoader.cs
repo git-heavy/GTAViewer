@@ -4,7 +4,7 @@ using Heavy.TXDLib.Sections;
 
 namespace Heavy.TXDLib
 {
-  class TXDSectionLoader : ISectionLoader
+  public class TXDSectionLoader : ISectionLoader
   {
     #region ISectionLoader
     public IRWSectionFactory GetFactory(RWSectionHeader header, RWSection parent)
