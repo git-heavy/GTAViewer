@@ -66,7 +66,6 @@ namespace Heavy.DFFViewer.ViewModels
 
     private void cameraViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == "Camera") ;
     }
 
     public ICommand TestCommand { get { return new BaseCommand(this.TestCommandExecuted); } }

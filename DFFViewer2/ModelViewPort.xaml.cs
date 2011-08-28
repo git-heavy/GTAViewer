@@ -173,12 +173,6 @@ namespace Heavy.DFFViewer
     {
       InitializeComponent();
       this.DataContext = this;
-      this.cameraSettings.SettingsChanged += new System.EventHandler(cameraSettings_SettingsChanged);
-    }
-
-    private void cameraSettings_SettingsChanged(object sender, System.EventArgs e)
-    {
-      this.OnPropertyChanged("PCamera");
     }
 
     #endregion

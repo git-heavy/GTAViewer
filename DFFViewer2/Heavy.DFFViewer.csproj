@@ -88,10 +88,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PerspectiveCameraSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CameraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,9 +104,6 @@
   <ItemGroup>
     <Compile Include="ModelViewPort.xaml.cs">
       <DependentUpon>ModelViewPort.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PerspectiveCameraSettings.xaml.cs">
-      <DependentUpon>PerspectiveCameraSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
