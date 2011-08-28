@@ -1,21 +1,21 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Point3DViewModel.cs" company="">
+// <copyright file="Vector3DViewModel.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Windows.Media.Media3D;
 namespace Heavy.DFFViewer.ViewModels
 {
-  using System.Windows.Media.Media3D;
 
   /// <summary>
   /// TODO: Update summary.
   /// </summary>
-  public class Point3DViewModel : BaseViewModel
+  public class Vector3DViewModel : BaseViewModel
   {
-    private Point3D value;
+    private Vector3D value;
 
-    public Point3D Value
+    public Vector3D Value
     {
       get
       {
@@ -33,7 +33,7 @@ namespace Heavy.DFFViewer.ViewModels
     {
       get
       {
-        return this.Value.X;
+        return this.value.X;
       }
 
       set
@@ -48,7 +48,7 @@ namespace Heavy.DFFViewer.ViewModels
     {
       get
       {
-        return this.Value.Y;
+        return this.value.Y;
       }
 
       set
@@ -63,7 +63,7 @@ namespace Heavy.DFFViewer.ViewModels
     {
       get
       {
-        return this.Value.Z;
+        return this.value.Z;
       }
 
       set

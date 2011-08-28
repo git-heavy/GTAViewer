@@ -15,6 +15,8 @@ namespace Heavy.DFFViewer.ViewModels
   /// </summary>
   public class CameraViewModel : BaseViewModel
   {
+    #region Поля и свойства
+
     private PerspectiveCamera camera;
 
     public PerspectiveCamera Camera
@@ -28,35 +30,62 @@ namespace Heavy.DFFViewer.ViewModels
       {
         this.camera = value;
         this.OnPropertyChanged(() => Camera);
-        this.InitPosition(this.Camera.Position);
+        this.Initialize();
       }
     }
 
-    private void InitPosition(Point3D position)
+    private Point3DViewModel position = new Point3DViewModel();
+
+    public Point3DViewModel Position
     {
-      this.positionViewModel.Value = position;
+      get { return this.position; }
     }
 
-    private Point3DViewModel positionViewModel = new Point3DViewModel();
+    private Vector3DViewModel lookDirection = new Vector3DViewModel();
 
-    public Point3DViewModel PositionViewModel
+    public Vector3DViewModel LookDirection
     {
-      get { return this.positionViewModel; }
+      get { return this.lookDirection; }
     }
 
-    public CameraViewModel()
+    #endregion
+
+    #region Методы
+
+    private void Initialize()
     {
-      this.positionViewModel.PropertyChanged += new PropertyChangedEventHandler(positionViewModel_PropertyChanged);
+      this.Position.Value = this.Camera.Position;
+      this.LookDirection.Value = this.Camera.LookDirection;
+    }
+
+    private void lookDirectionViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+      if (e.PropertyName == "Value")
+      {
+        this.Camera.LookDirection = this.LookDirection.Value;
+        this.OnPropertyChanged(() => Camera);
+      }
     }
 
     private void positionViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       if (e.PropertyName == "Value")
       {
-        this.Camera.Position = PositionViewModel.Value;
+        this.Camera.Position = this.Position.Value;
         this.OnPropertyChanged(() => Camera);
       }
     }
-  }
 
+    #endregion
+
+    #region Конструкторы
+
+    public CameraViewModel()
+    {
+      this.position.PropertyChanged += new PropertyChangedEventHandler(positionViewModel_PropertyChanged);
+      this.lookDirection.PropertyChanged += new PropertyChangedEventHandler(lookDirectionViewModel_PropertyChanged);
+    }
+
+    #endregion
+  }
 }
