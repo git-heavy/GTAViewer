@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Heavy.DFFViewer.ViewModels;
 
 namespace Heavy.DFFViewer.Views
 {
@@ -10,8 +11,7 @@ namespace Heavy.DFFViewer.Views
     public MainWindowView()
     {
       InitializeComponent();
-      this.DataContext = new Heavy.DFFViewer.ViewModels.MainWindowViewModel();
-
+      this.DataContext = new MainWindowViewModel();
     }
   }
 }

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Heavy.DFFViewer.Views.NumericUpDownView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prop="clr-namespace:Heavy.DFFViewer.Properties" MouseWheel="UserControl_MouseWheel">
+  <UserControl.Resources>
+    <RoutedCommand x:Key="UpCommand"/>
+    <RoutedCommand x:Key="DownCommand"/>
+  </UserControl.Resources>
+  <UserControl.CommandBindings>
+    <CommandBinding Command="{StaticResource UpCommand}" Executed="UpCommandExecuted"/>
+    <CommandBinding Command="{StaticResource DownCommand}" Executed="DownCommandExecuted"/>
+  </UserControl.CommandBindings>
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
+      <Button Grid.Row="0" Grid.Column="1" Command="{StaticResource UpCommand}" Padding="-1">
+        <Image Source="/Heavy.DFFViewer;component/Resources/arrow_up.png" Stretch="Fill" Height="8" Width="16"/>
+      </Button>
+      <Button Grid.Row="1" Grid.Column="1" Command="{StaticResource DownCommand}" Padding="-1">
+        <Image Source="/Heavy.DFFViewer;component/Resources/arrow_down.png" Stretch="Fill" Height="8" Width="16"/>
+      </Button>
+    </StackPanel>
+    <TextBox Text="{Binding Value}" MinWidth="40"/>
+  </DockPanel>
+</UserControl>

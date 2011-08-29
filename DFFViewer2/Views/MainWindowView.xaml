@@ -2,9 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:v="clr-namespace:Heavy.DFFViewer.Views"
-        Title="MainWindowView" Height="300" Width="300">
+        Title="MainWindowView" Height="307" Width="758">
   <StackPanel>
-    <v:CameraView DataContext="{Binding CameraViewModel}" />
-    <Button Command="{Binding TestCommand}">Test</Button>
+    <Menu DockPanel.Dock="Top" IsMainMenu="True">
+      <MenuItem Header="_File">
+        <MenuItem Command="{Binding Path=OpenCommand}" Header="Open"/>
+      </MenuItem>
+      <MenuItem Command="{Binding Path=TestCommand}" Header="Test"/>
+    </Menu>
+    <DockPanel>
+      <v:CameraView DockPanel.Dock="Left" DataContext="{Binding Path=Camera}"/>
+      <Viewport3D Camera="{Binding Path=Camera.Camera}">
+        <Viewport3D.Children>
+          <ModelVisual3D Content="{Binding Path=Scene.Light}"/>
+          <ModelVisual3D Content="{Binding Path=Scene.ModelGroup}"/>
+        </Viewport3D.Children>
+      </Viewport3D>
+    </DockPanel>
   </StackPanel>
 </Window>

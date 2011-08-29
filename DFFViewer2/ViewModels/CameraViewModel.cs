@@ -17,7 +17,7 @@ namespace Heavy.DFFViewer.ViewModels
   {
     #region Поля и свойства
 
-    private PerspectiveCamera camera;
+    private PerspectiveCamera camera = new PerspectiveCamera();
 
     public PerspectiveCamera Camera
     {
@@ -46,6 +46,21 @@ namespace Heavy.DFFViewer.ViewModels
     public Vector3DViewModel LookDirection
     {
       get { return this.lookDirection; }
+    }
+
+    public double FieldOfView
+    {
+      get
+      {
+        return this.Camera.FieldOfView;
+      }
+
+      set
+      {
+        this.Camera.FieldOfView = value;
+        this.OnPropertyChanged(() => FieldOfView);
+        this.OnPropertyChanged(() => Camera);
+      }
     }
 
     #endregion

@@ -6,6 +6,7 @@
 
 using System.ComponentModel;
 using System.Windows.Input;
+using Heavy.DFFLib.Sections;
 using Heavy.DFFViewer.Helper;
 using Heavy.RWLib;
 using Heavy.RWLib.Sections;
@@ -44,35 +45,57 @@ namespace Heavy.DFFViewer.ViewModels
       if (dialog.ShowDialog().Value)
       {
         RootSection root = SectionLoaderManager.Instance.LoadFromStream(dialog.OpenFile());
-        //this.modelViewPort.ModelMetadata = (ClumpSection)root.Childs[0];
+        this.Scene.ModelGroupMetadata = (ClumpSection)root.Childs[0];
       }
     }
 
+    private ICommand testCommand;
 
-    private CameraViewModel cameraViewModel = new CameraViewModel();
-
-    public CameraViewModel CameraViewModel
+    public ICommand TestCommand
     {
       get
       {
-        return this.cameraViewModel;
+        if (this.testCommand == null)
+          this.testCommand = new BaseCommand(this.TestCommandExecuted);
+        return this.testCommand;
       }
+    }
+
+    private void TestCommandExecuted()
+    {
+      ViewService.ShowMessageBox(this.Scene.ModelGroup.ToString());
+    }
+
+    private SceneViewModel scene = new SceneViewModel();
+
+    public SceneViewModel Scene
+    {
+      get { return this.scene; }
+    }
+
+    private CameraViewModel camera = new CameraViewModel();
+
+    public CameraViewModel Camera
+    {
+      get { return this.camera; }
     }
 
     public MainWindowViewModel()
     {
-      this.cameraViewModel.PropertyChanged += new PropertyChangedEventHandler(cameraViewModel_PropertyChanged);
+      SectionLoaderManager.Instance.RegisterLoader(new DFFLib.DFFSectionLoader());
+
+      this.camera.PropertyChanged += new PropertyChangedEventHandler(camera_PropertyChanged);
+      this.scene.PropertyChanged += new PropertyChangedEventHandler(scene_PropertyChanged);
     }
 
-    private void cameraViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void scene_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
+      this.OnPropertyChanged(() => Scene);
     }
 
-    public ICommand TestCommand { get { return new BaseCommand(this.TestCommandExecuted); } }
-
-    private void TestCommandExecuted()
+    private void camera_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      ViewService.ShowMessageBox(this.CameraViewModel.Camera.Position.ToString());
+      this.OnPropertyChanged(() => Camera);
     }
   }
 }
