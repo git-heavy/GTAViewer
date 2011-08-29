@@ -2,6 +2,7 @@
 using System.Linq;
 using Heavy.RWLib;
 using Heavy.RWLib.Sections;
+using Heavy.TXDLib.Types;
 
 namespace Heavy.TXDLib.Sections
 {

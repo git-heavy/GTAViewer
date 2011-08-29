@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -38,7 +39,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sections\TextureNativeSection.cs" />
     <Compile Include="TXDSectionLoader.cs" />
-    <Compile Include="TXDTypes.cs" />
+    <Compile Include="Types\TextureFilterFlags.cs" />
+    <Compile Include="Types\TextureNativeHeader.cs" />
+    <Compile Include="Types\TextureWrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RWLib\Heavy.RWLib.csproj">

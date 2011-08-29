@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:v="clr-namespace:Heavy.DFFViewer.Views"
-        Title="MainWindowView" Height="307" Width="758">
+        xmlns:viblendEditors="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        Title="MainWindowView" Height="449" Width="808" x:Name="MainWindow">
   <StackPanel>
     <Menu DockPanel.Dock="Top" IsMainMenu="True">
       <MenuItem Header="_File">

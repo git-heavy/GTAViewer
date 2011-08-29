@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Linq;
+using Heavy.DFFLib.Types;
 using Heavy.RWLib;
 using Heavy.RWLib.Sections;
+using Heavy.RWLib.Types;
 
 namespace Heavy.DFFLib.Sections
 {

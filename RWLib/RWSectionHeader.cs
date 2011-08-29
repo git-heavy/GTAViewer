@@ -79,7 +79,7 @@ namespace Heavy.RWLib
   /// <summary>
   /// Заголовок секции.
   /// </summary>
-  public struct RWSectionHeader : IStreamLoadeable
+  public class RWSectionHeader : IStreamLoadeable
   {
     /// <summary>
     /// Id секции.

@@ -19,6 +19,6 @@
         <Image Source="/Heavy.DFFViewer;component/Resources/arrow_down.png" Stretch="Fill" Height="8" Width="16"/>
       </Button>
     </StackPanel>
-    <TextBox Text="{Binding Value}" MinWidth="40"/>
+    <TextBox Text="{Binding Path=Value, Mode=TwoWay}" MinWidth="40"/>
   </DockPanel>
 </UserControl>

@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ISectionLoader.cs" />
+    <Compile Include="IStreamLoadeable.cs" />
     <Compile Include="Sections\ContainerSection.cs" />
     <Compile Include="Sections\DataSection.cs" />
     <Compile Include="Sections\ExtensionSection.cs" />
@@ -40,12 +42,17 @@
     <Compile Include="Sections\RWSection.cs" />
     <Compile Include="RWSectionFactory.cs" />
     <Compile Include="RWSectionHeader.cs" />
-    <Compile Include="RWTypes.cs" />
     <Compile Include="RWSectionLoader.cs" />
     <Compile Include="SectionLoaderManager.cs" />
     <Compile Include="Sections\StringSection.cs" />
     <Compile Include="Sections\StructureSection.cs" />
     <Compile Include="Sections\UnknownSection.cs" />
+    <Compile Include="Types\ColorAmount.cs" />
+    <Compile Include="Types\TextureCoordinate.cs" />
+    <Compile Include="Types\Vector.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

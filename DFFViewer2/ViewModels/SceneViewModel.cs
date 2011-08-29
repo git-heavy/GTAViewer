@@ -6,8 +6,9 @@
 
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using Heavy.DFFLib;
 using Heavy.DFFLib.Sections;
+using Heavy.DFFLib.Types;
+using Heavy.RWLib.Types;
 namespace Heavy.DFFViewer.ViewModels
 {
 
@@ -71,7 +72,7 @@ namespace Heavy.DFFViewer.ViewModels
     private GeometryModel3D CreateModel(AtomicSection atomic)
     {
       GeometryModel3D model = new GeometryModel3D(this.CreateGeometry(this.ModelGroupMetadata.GeometryList.Geometries[atomic.Structure.GeometryIndex]), new DiffuseMaterial(Brushes.Gray));
-      //this.ApplyTransformation(model, this.ModelGroupMetadata.FrameList.Structure.Frames[atomic.Structure.FrameIndex]);
+      this.ApplyTransformation(model, this.ModelGroupMetadata.FrameList.Structure.Frames[atomic.Structure.FrameIndex]);
       return model;
     }
 
@@ -84,10 +85,10 @@ namespace Heavy.DFFViewer.ViewModels
     {
       MeshGeometry3D meshGeometry = new MeshGeometry3D();
       if (geometrySection.Structure.VertexTranslation != null)
-        foreach (Heavy.RWLib.Vector vertex in geometrySection.Structure.VertexTranslation)
+        foreach (Vector vertex in geometrySection.Structure.VertexTranslation)
           meshGeometry.Positions.Add(new Point3D(vertex.X, vertex.Y, vertex.Z));
       if (geometrySection.Structure.Normals != null)
-        foreach (Heavy.RWLib.Vector normal in geometrySection.Structure.Normals)
+        foreach (Vector normal in geometrySection.Structure.Normals)
           meshGeometry.Normals.Add(new Vector3D(normal.X, normal.Y, normal.Z));
       if (geometrySection.Structure.Triangles != null)
         foreach (GeometryTriangle triangle in geometrySection.Structure.Triangles)

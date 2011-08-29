@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using Heavy.DFFLib.Types;
 using Heavy.RWLib;
 using Heavy.RWLib.Sections;
 
@@ -48,14 +49,14 @@ namespace Heavy.DFFLib.Sections
 
     #region DataSection
 
-    protected override void LoadData(BinaryReader br)
+    protected override void LoadData(BinaryReader reader)
     {
-      this.FramesCount = br.ReadInt32();
+      this.FramesCount = reader.ReadInt32();
       this.Frames = new Frame[this.FramesCount];
       for (int i = 0; i < this.Frames.Length; i++)
       {
         this.Frames[i] = new Frame();
-        this.Frames[i].LoadFromStream(br);
+        this.Frames[i].LoadFromStream(reader);
       }
     }
 
